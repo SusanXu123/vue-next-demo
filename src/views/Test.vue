@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, getCurrentInstance } from 'vue'
 export default {
   setup () {
     const count = ref(0)
@@ -19,6 +19,8 @@ export default {
     watch(() => count.value, (val, oldVal) => {
       console.log('watch--', val, oldVal)
     })
+    const { ctx } = getCurrentInstance()
+    console.log('route=', ctx.$router.currentRoute.value)
     return {
       count,
       add,
